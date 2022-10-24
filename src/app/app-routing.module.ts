@@ -9,7 +9,8 @@ import { AuthguardGuard } from './authguard.guard';
 const routes: Routes = [
   {path:'',loadChildren:()=>import('./modules/home/home.module').then(mod=>mod.HomeModule)},
   {path:'auth',loadChildren:()=>import('./modules/auth/auth.module').then(mod=>mod.AuthModule)},
-  {path:'admin',canActivate:[AuthguardGuard] ,loadChildren:()=>import('./modules/admin/admin.module').then(mod=>mod.AdminModule)},
+  // {path:'admin',canActivate:[AuthguardGuard] ,loadChildren:()=>import('./modules/admin/admin.module').then(mod=>mod.AdminModule)},
+  {path:'admin' ,loadChildren:()=>import('./modules/admin/admin.module').then(mod=>mod.AdminModule)},
   {path:'**',component:PageNotFoundComponent}
 ];
 

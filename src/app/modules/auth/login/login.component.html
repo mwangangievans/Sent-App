@@ -27,6 +27,7 @@
             #password="ngModel"
 
            >
+           <p [ngStyle]="{'color': 'red'}">just click login</p>
             <span *ngIf="password.touched && password.invalid"><p class="mail-vali">password is required</p></span>
 						<button class="submit">Login</button>
 					</form>

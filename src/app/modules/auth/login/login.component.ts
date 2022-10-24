@@ -36,6 +36,9 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(loginData:userLoginInterface){
+
+    this.router.navigate(['admin']);
+
     this.auth.loginAuthentication(loginData).subscribe(
       res=>{
       localStorage.setItem("token",res.token)
