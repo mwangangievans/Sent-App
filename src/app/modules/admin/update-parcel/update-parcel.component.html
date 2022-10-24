@@ -1,0 +1,84 @@
+<div class="contain">
+  <div class="wrapper" *ngIf="allParcels$ | async as parcels">
+    <div *ngIf="!isUpdating">
+      <div class="form">
+        <h4 class="form-headline">Edit PARCEL DETAILS</h4>
+        <div id="submit-form">
+          <div class="row">
+            <div class="form-group">
+              <label for="exampleInputEmail">Sender name</label>
+              <select class="form-select" aria-label="Default select example" formControlName="Sender">
+                <option selected>{{ parcels.receiver_name }}</option>
+                <option *ngFor="let user of allUsers" value={{user.user_id}}>{{user.user_name}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+              <label for="exampleInputEmail">Receiver name</label>
+              <select class="form-select" aria-label="Default select example" formControlName="Receiver">
+                <option selected>{{ parcels.receiver_name }}</option>
+                <option *ngFor="let user of allUsers" value={{user.user_id}}>{{user.user_name}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+              <label for="destination">destination </label>
+              <input class="form-control" matInput ngx-google-places-autocomplete
+                (onAddressChange)="AddressChange($event)" formControlName="destination">
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+              <label for="Dispatched time">Dispatched time</label>
+              <input type="datetime-local" class="form-control" name="emailInput" id="exampleInputEmail"
+                placeholder="Dispatched time" formControlName="time_Dispatched" required>
+            </div>
+          </div>
+
+          <div class="row">
+            <button class="btn btn-success">Mark Delivered</button>
+
+          </div>
+
+          <p>
+            <label for="">Weight</label>
+            <input type="text" class="form-control"
+              formControlName="time_Dispatched" value="{{ parcels.total_cost | currency }}">
+          </p>
+
+          <p>
+            <label for="">Charge</label>
+            <label class="detail_item">{{ parcels.total_cost | currency }} </label>
+          </p>
+
+          <p class="full-width">
+            <!-- <button class="btn btn-primary" (click)="updateParcel(parcels.parcel_no)">Update</button> -->
+            <button class="btn btn-primary">Delete</button>
+          </p>
+
+          <p class="full-width"></p>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="contacts contact-wrapper">
+      <mat-card class="example-card">
+        <ul>
+          <li>
+            <google-map height="400px" width="500px" [center]="center" [zoom]="zoom" (mapClick)="moveMap($event)"
+              (mapMousemove)="move($event)">
+              <map-marker *ngFor="let markerPosition of markerPositions" [position]="markerPosition"
+                [options]="markerOptions"></map-marker>
+            </google-map>
+
+          </li>
+        </ul>
+      </mat-card>
+    </div>
+  </div>
+</div>

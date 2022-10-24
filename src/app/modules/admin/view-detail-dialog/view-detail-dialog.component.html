@@ -1,0 +1,79 @@
+<div class="contain">
+    <div class="wrapper" *ngIf="allParcels$ | async as parcels">
+      <div *ngIf="!isUpdating">
+      <div class="form">
+        <h4 class="form-headline">PARCEL DETAILS</h4>
+        <div id="submit-form">
+          <p>
+            <label for="">Sender Name</label>
+            <label class="detail_item">{{ parcels.sender_name }} </label>
+          </p>
+           <p>
+            <label for="">Receiver Name</label>
+            <label class="detail_item">{{ parcels.receiver_name }} </label>
+          </p>
+
+          <p>
+            <label for="">Destination</label>
+            <label class="detail_item">{{ parcels.destination }} </label>
+          </p>
+          <p>
+            <label for="">Time Dispatched</label>
+            <label class="detail_item">{{ parcels.time_Dispatched }}</label>
+          </p>
+
+          <p>
+            <label for="">Parcel status</label>
+            <label class="detail_item" *ngIf="parcels.is_delived" style="color: green;">
+              Delivered</label>
+              <label class="detail_item" *ngIf="parcels.is_dispatched&& !parcels.is_delived" style="color: green;">
+                Dispatched</label>
+          </p>
+
+          <p>
+            <label for="">Weight</label>
+            <label class="detail_item">{{ parcels.weight }} </label>
+          </p>
+
+          <p>
+            <label for="">Charge</label>
+            <label class="detail_item">{{ parcels.total_cost | currency }} </label>
+          </p>
+
+          <p class="full-width">
+            <!-- <button class="btn btn-primary" (click)="updateParcel(parcels.parcel_no)">Update</button> -->
+            <button *ngIf="parcels.is_dispatched&& !parcels.is_delived" class="btn btn-primary" (click)="markDelivered(parcels.parcel_no)">Mark Delivered</button>
+            <button  *ngIf="parcels.is_dispatched&& parcels.is_delived" class="btn btn-primary" (click)="softDelete(parcels.parcel_no)">Delete</button>
+
+          </p>
+          <!-- <p> <button class="btn btn-primary">Delete</button></p> -->
+
+          <p class="full-width"></p>
+        </div>
+      </div>
+      </div>
+
+
+
+      <div class="contacts contact-wrapper">
+        <mat-card class="example-card">
+          <ul>
+            <li>
+              <google-map height="400px"
+              width="500px"
+              [center]="center"
+              [zoom]="zoom"
+              (mapClick)="moveMap($event)"
+              (mapMousemove)="move($event)">
+              <map-marker *ngFor="let markerPosition of markerPositions"
+              [position]="markerPosition"
+              [options]="markerOptions"></map-marker>
+              </google-map>
+
+            </li>
+          </ul>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+

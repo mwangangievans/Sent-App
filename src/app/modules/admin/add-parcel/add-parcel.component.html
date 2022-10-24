@@ -1,0 +1,78 @@
+
+<!--================================== -->
+
+<div class="container">
+
+  <div class="add_parcel">
+    <div class="row add_form">
+      <div class="col-md-8">
+        <form [formGroup]="formValue" (ngSubmit)="handleSubmit()">
+          <div class="row">
+            <div class="form-group">
+              <label for="exampleInputEmail">Sender name</label>
+              <select class="form-select" aria-label="Default select example" formControlName="Sender">
+                <option selected>select sender</option>
+                <option *ngFor="let user of allUsers" value={{user.user_id}}>{{user.user_name}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group">
+              <label for="exampleInputEmail">Recever name</label>
+              <select class="form-select" aria-label="Default select example" formControlName="Receiver">
+                <option selected>select receiver</option>
+                <option *ngFor="let user of allUsers" value={{user.user_id}}>{{user.user_name}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+              <label for="destination">destination </label>
+              <input class="form-control" matInput ngx-google-places-autocomplete
+                (onAddressChange)="AddressChange($event)">
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+              <label for="weight">weight</label>
+              <input type="number" class="form-control" name="emailInput" id="exampleInputEmail" placeholder="weight"
+                formControlName="weight" required>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+              <label for="Total Cost">Total Cost </label>
+              <input type="text" class="form-control" name="emailInput" id="exampleInputEmail" placeholder="Total Cost"
+                formControlName="Cost" required readonly>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+              <label for="Dispatched time">Dispatched time</label>
+              <input type="datetime-local" class="form-control" name="emailInput" id="exampleInputEmail"
+                placeholder="Dispatched time" formControlName="time_Dispatched" required>
+            </div>
+          </div>
+          <div class="row">
+            <button class="btn btn-primary" type="submit">submit</button>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-4">
+        <div class="contacts contact-wrapper">
+          <ul>
+            <li>Interested in becoming Our <span class="highlight-text-grey">Customer at SENT-IT </span>, feel free to
+              send your
+              Parcels through our services.</li>
+            <span class="hightlight-contact-info">
+              <li class="email-info"><i class="fa fa-envelope" aria-hidden="true"></i> sent-it@gmail.com</li>
+              <li><i class="fa fa-phone" aria-hidden="true"></i> <span class="highlight-text">SENT-IT.COM</span></li>
+            </span>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
